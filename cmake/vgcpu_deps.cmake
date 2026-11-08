@@ -11,6 +11,7 @@ set(VGCPU_DEP_NLOHMANN_JSON_TAG "v3.11.3")
 # PlutoVG - Small C vector graphics library
 set(VGCPU_DEP_PLUTOVG_TAG "v1.3.2")
 
+set(VGCPU_DEP_VKVG_COMMIT "e76c8dead9d8334214713d156f85632165f65930")
 # AsmJit - JIT assembler (used by Blend2D)
 # Pinned to commit SHA for reproducibility (no release tags available)
 set(VGCPU_DEP_ASMJIT_COMMIT "c87860217e43e2a06060fcaae5b468f6a55b9963")

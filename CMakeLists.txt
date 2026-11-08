@@ -94,6 +94,15 @@ if(ENABLE_PLUTOVG)
     message(STATUS "PlutoVG fetched from GitHub (${VGCPU_DEP_PLUTOVG_TAG})")
 endif()
 
+if(ENABLE_VKVG)
+    FetchContent_Declare(
+        vkvg
+        GIT_REPOSITORY https://github.com/jpbruyere/vkvg.git
+        GIT_TAG        ${VGCPU_DEP_VKVG_COMMIT}
+    )
+    FetchContent_MakeAvailable(vkvg)
+    message(STATUS "VKVG fetched from GitHub (${VGCPU_DEP_VKVG_COMMIT})")
+endif()
 # -----------------------------------------------------------------------------
 # Cairo (Prebuilt from preshing/cairo-windows)
 # -----------------------------------------------------------------------------
@@ -707,6 +716,11 @@ if(ENABLE_CAIRO)
     target_compile_definitions(vgcpu_core PUBLIC VGCPU_ENABLE_CAIRO)
 endif()
 
+if(ENABLE_VKVG)
+    list(APPEND ADAPTER_SOURCES src/adapters/vkvg/vkvg_adapter.cpp)
+    target_compile_definitions(vgcpu_core PUBLIC VGCPU_ENABLE_VKVG)
+endif()
+
 if(ENABLE_BLEND2D)
     list(APPEND ADAPTER_SOURCES src/adapters/blend2d/blend2d_adapter.cpp)
     target_compile_definitions(vgcpu_core PUBLIC VGCPU_ENABLE_BLEND2D)
@@ -768,6 +782,10 @@ if(ENABLE_CAIRO)
             target_link_libraries(vgcpu_adapters PUBLIC Fontconfig::Fontconfig)
         endif()
     endif()
+endif()
+
+if(ENABLE_VKVG)
+    target_link_libraries(vgcpu_adapters PUBLIC vkvg)
 endif()
 
 if(ENABLE_BLEND2D)
@@ -1100,6 +1118,7 @@ message(STATUS "  Enabled Backends:")
 message(STATUS "    Null (Debug): ${ENABLE_NULL_BACKEND}")
 message(STATUS "    PlutoVG:      ${ENABLE_PLUTOVG}")
 message(STATUS "    Cairo:        ${ENABLE_CAIRO}")
+message(STATUS "    vkvg:         ${ENABLE_VKVG}")
 message(STATUS "    Blend2D:      ${ENABLE_BLEND2D}")
 message(STATUS "    Skia:         ${ENABLE_SKIA}")
 message(STATUS "    ThorVG:       ${ENABLE_THORVG}")

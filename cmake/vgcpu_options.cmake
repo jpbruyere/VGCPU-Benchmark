@@ -21,6 +21,7 @@ option(VGCPU_ENABLE_ALLOC_INSTRUMENTATION "Enable allocation instrumentation for
 # Tier-1 backends (always available)
 option(ENABLE_NULL_BACKEND "Enable Null backend (Tier-1)" ON)
 option(ENABLE_PLUTOVG "Enable PlutoVG backend (Tier-1)" ON)
+option(ENABLE_VKVG "Enable VKVG backend (Tier-1)" ON)
 option(ENABLE_BLEND2D "Enable Blend2D backend (Tier-1)" ON)
 
 # Optional backends (default ON for developer convenience, OFF when VGCPU_TIER1_ONLY)

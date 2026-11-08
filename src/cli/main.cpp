@@ -33,6 +33,10 @@
 #include "adapters/cairo/cairo_adapter.h"
 #endif
 
+#ifdef VGCPU_ENABLE_VKVG
+#include "adapters/vkvg/vkvg_adapter.h"
+#endif
+
 #ifdef VGCPU_ENABLE_BLEND2D
 #include "adapters/blend2d/blend2d_adapter.h"
 #endif
@@ -621,6 +625,10 @@ int main(int argc, char* argv[]) {
 
 #ifdef VGCPU_ENABLE_CAIRO
     RegisterCairoAdapter();
+#endif
+
+#ifdef VGCPU_ENABLE_VKVG
+    RegisterVkvgAdapter();
 #endif
 
 #ifdef VGCPU_ENABLE_BLEND2D
